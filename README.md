@@ -1,5 +1,5 @@
 # Experiment--04-Half-Subtractor-and-Full-subtractor
-## Implementation-of-Half-subtractor-and-Full-subtractor-circuit
+
 ## AIM:
 To design a half subtractor and full subtractor circuit and verify its truth table in Quartus using Verilog programming.
 
@@ -26,63 +26,65 @@ A full subtractor is a combinational circuit that performs subtraction involving
 Diff = A ⊕ B ⊕ Bin B = A'Bin + A'B + BBin
 
 ## Procedure
+1.Use module projname(input,output) to start the Verilog programmming. 
 
+2.Assign inputs and outputs using the word input and output respectively.
 
+3.Use defined keywords like wire,assign and required logic gates to represent the boolean expression.
 
-1.Connect the supply (+5V) to the circuit. 
+4.Use each output to represnt onre for differnce and the other for borrow. 
 
-2.Switch ON the main switch. 
-
-3.If the output is 1, then the led glows
-
-
+5.End the verilog program using keyword endmodule.
 
 ## Program:
 ```
 Program to design a half subtractor and full subtractor circuit and verify its truth table in quartus using Verilog programming.
-Developed by: Dario G
-RegisterNumber: 212222230027
-
-1. Program to design a half subtractor:
-
-module ex4(a,b,diff,borr);
-input a,b;
-output diff,borr;
-assign diff=(a^b);
-assign borr=((~a)&b);
-endmodule 
-
-2. Program to design a full subtractor:
-
-module ex41(a,b,bin,diff,borr);
-input a,b,bin;
-output diff,borr;
-assign diff=a^b^bin;
-assign borr=((~a)&b)|(b&bin)|((~a)&bin);
-endmodule 
-
+Developed by: NATHIN R
+RegisterNumber:  212222230090
+```
+### HalfSubtractor
+```
+module Subtractor(A,B,Diff,Borrow);
+input A,B;
+output Diff,Borrow;
+wire x;
+xor (Diff, A,B);
+not(x,A);
+and(Borrow,x,B);
+endmodule
+```
+### FullSubtractor
+```
+module Subtractor(A,B,C,Diff,Borrow);
+input A,B,C;
+output Diff,Borrow;
+wire p;
+assign Diff = ((A^B)^C);
+not(p,A);
+assign Borrow = ((p&B)|(p&C)|(B&C));
+endmodule
 ```
 ## Output:
 
-## Truthtable
-### HALF SUBTRACTOR:
-![OUTPUT](1.png)
-
-
-### FULL SUBTRACTOR:
-
-![OUTPUT](2.png)
-
 ##  RTL realization
-### HALF SUBTRACTOR:
-![OUTPUT](3.png)
+### Half SUbtractor
+![image](https://user-images.githubusercontent.com/118679646/231664873-90b9e009-9f1f-4b90-9327-15d52026c3d6.png)
+### FullSubtractor
+![image](https://user-images.githubusercontent.com/118679646/231667252-43afb9e0-d998-4f3b-9970-d8d40b58a27e.png)
 
-### FULL SUBTRACTOR:
-![OUTPUT](4.png)
 ## Timing diagram 
-### HALF SUBTRACTOR:
-![OUTPUT](5.png)
-### FULL SUBTRACTOR:
-![OUTPUT](6.png)
+### HalfSubtractor
+![image](https://user-images.githubusercontent.com/118679646/231666975-ba0f6b2b-bfb9-4aa7-8876-67e4a050f6e9.png)
+
+### FullSubtractor
+![image](https://user-images.githubusercontent.com/118679646/231667875-4389eff8-e861-4c7e-ac98-74c19fb80929.png)
+
+## Truthtable
+### HalfSubtractor
+![image](https://user-images.githubusercontent.com/118679646/231669731-56fac0bf-6911-4cae-b10b-1a9a346606ea.png)
+
+### FullSubtractor
+![image](https://user-images.githubusercontent.com/118679646/231669288-778c1e73-b148-48c7-9ff1-8c336e376bc3.png)
+
 ## Result:
 Thus the half subtractor and full subtractor circuits are designed and the truth tables is verified using quartus software.
